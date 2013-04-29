@@ -1,5 +1,7 @@
 package org.greg.resteasy;
 
+import org.greg.resteasy.controller.HomeController;
+import org.greg.resteasy.server.NettyServer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.Assert;
