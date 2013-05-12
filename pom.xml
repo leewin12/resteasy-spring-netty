@@ -13,7 +13,7 @@
 		<java-version>1.6</java-version>
 		<org.springframework-version>3.2.2.RELEASE</org.springframework-version>
 
-		<resteasy.version>2.3.6.Final</resteasy.version>
+		<resteasy.version>3.0-beta-5</resteasy.version>
 
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
@@ -27,7 +27,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jackson-provider</artifactId>
+			<artifactId>resteasy-jackson2-provider</artifactId>
 			<version>${resteasy.version}</version>
 		</dependency>
 		<dependency>
