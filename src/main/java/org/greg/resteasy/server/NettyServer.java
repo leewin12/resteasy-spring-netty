@@ -1,9 +1,9 @@
 package org.greg.resteasy.server;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.PreDestroy;
+import javax.ws.rs.ext.Provider;
 
 import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,19 @@ public class NettyServer {
 
 	public void start() {
 
-		// extract only controller annotated beans
-		Collection<Object> beans = ac.getBeansWithAnnotation(Controller.class).values();
-		Assert.notEmpty(beans);
-
 		ResteasyDeployment dp = new ResteasyDeployment();
-		dp.setResources(new ArrayList<Object>(beans));
+
+		Collection<Object> providers = ac.getBeansWithAnnotation(Provider.class).values();
+		Collection<Object> controllers = ac.getBeansWithAnnotation(Controller.class).values();
+
+		Assert.notEmpty(controllers);
+
+		// extract providers
+		if (providers != null) {
+			dp.getProviders().addAll(providers);
+		}
+		// extract only controller annotated beans
+		dp.getResources().addAll(controllers);
 
 		netty = new ConfigurableNettyJaxrsServer();
 		netty.initBootstrap().setOption("reuseAddress", true);

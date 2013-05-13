@@ -53,8 +53,11 @@ public class ConfigurableNettyJaxrsServer extends NettyJaxrsServer {
 	public void start()
 	{
 		deployment.start();
-		RequestDispatcher dispatcher = new RequestDispatcher((SynchronousDispatcher) deployment.getDispatcher(),
+		RequestDispatcher dispatcher = new RequestDispatcher(
+				(SynchronousDispatcher) deployment.getDispatcher(),
 				deployment.getProviderFactory(), domain);
+		
+//		dispatcher.getDispatcher().getProviderFactory().getContainerRequestFilterRegistry()
 
 		// Configure the server.
 		if (bootstrap == null) {
