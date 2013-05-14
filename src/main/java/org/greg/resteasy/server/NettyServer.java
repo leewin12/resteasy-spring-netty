@@ -38,7 +38,7 @@ public class NettyServer {
 		}
 		// extract only controller annotated beans
 		dp.getResources().addAll(controllers);
-
+		
 		netty = new ConfigurableNettyJaxrsServer();
 		netty.initBootstrap().setOption("reuseAddress", true);
 		netty.setDeployment(dp);
