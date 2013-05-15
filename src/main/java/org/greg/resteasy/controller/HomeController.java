@@ -13,9 +13,6 @@ import org.springframework.stereotype.Controller;
 @Path("/hello")
 public class HomeController {
 
-	@Context
-	SecurityContext	context;
-
 	@GET
 	@Path("/world")
 	@Produces("application/json")
@@ -26,7 +23,7 @@ public class HomeController {
 	@GET
 	@Path("/auth")
 	@Produces("application/json")
-	public Helloworld auth() {
+	public Helloworld auth(@Context SecurityContext context) {
 		return new Helloworld(context.getUserPrincipal().getName());
 	}
 }
