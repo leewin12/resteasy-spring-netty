@@ -1,9 +1,14 @@
 package org.greg.resteasy.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.greg.resteasy.controller.HomeController;
+import org.greg.resteasy.controller.request.Article;
 import org.greg.resteasy.pojo.response.Helloworld;
 import org.greg.resteasy.server.NettyServer;
 import org.greg.resteasy.test.testHomeController.TestConfig;
@@ -30,7 +35,7 @@ public class testHomeController {
 		public NettyServer nettyServer() {
 			return new NettyServer();
 		}
-		
+
 		@Bean
 		public HomeController homeController() {
 			return new HomeController();
@@ -57,6 +62,33 @@ public class testHomeController {
 		Helloworld resp = restOps.getForObject(buildUrl("hello/world"), Helloworld.class);
 		assertNotNull(resp);
 		assertTrue(StringUtils.hasText(resp.getMessage()));
+	}
+
+	@Test
+	public void testPOST() {
+		int id = 44;
+		String name = "NAME";
+		Article resp = restOps.postForObject(
+				buildUrl("hello"),
+				new Article(id, name),
+				Article.class);
+		assertNotNull(resp);
+		assertTrue(resp.getId().equals(id));
+		assertTrue(resp.getName().equals(name));
+	}
+
+	@Test
+	public void testPOSTbyList() {
+		int id = 44;
+		String name = "NAME";
+		
+		@SuppressWarnings("unchecked")
+		List<Object> resp = restOps.postForObject(
+				buildUrl("hello?multi=true"),
+				Collections.singletonList(new Article(id, name)),
+				List.class);
+
+		assertEquals(1, resp.size());
 	}
 
 	public String buildUrl(String target) {
