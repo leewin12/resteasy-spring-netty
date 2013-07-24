@@ -42,7 +42,7 @@ public class NettyServer {
 		netty = new ConfigurableNettyJaxrsServer();
 		netty.initBootstrap().setOption("reuseAddress", true);
 		netty.setDeployment(dp);
-		netty.setPort(8082);
+		netty.setPort(port);
 		netty.setRootResourcePath("/resteasy");
 		netty.setSecurityDomain(null);
 		netty.start();
