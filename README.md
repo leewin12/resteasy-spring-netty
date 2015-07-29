@@ -14,3 +14,7 @@ Resteasy + Spring + Netty sample
 
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/935e6097d440334f54cfe1a6a1cb47fa "githalytics.com")](http://githalytics.com/leewin12/resteasy-spring-netty)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/leewin12/resteasy-spring-netty/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
